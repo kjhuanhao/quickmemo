@@ -1,0 +1,8 @@
+#!/bin/sh
+
+pnpm run lint:eslint
+pnpm run lint:stylelint
+pnpm run lint-staged
+
+
+

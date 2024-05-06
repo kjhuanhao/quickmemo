@@ -1,0 +1,5 @@
+{
+  "welcome": "欢迎来到我的网站",
+  "currentTime": "当前时间是 {{time, YYYY-MM-DD}}",
+  "languageChange": "语言切换"
+}
