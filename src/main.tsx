@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ThemeProvider } from '@/components/ThemeProvider/index.tsx'
+import { ThemeProvider } from '@/context/ThemeContext'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ROUTE_COMPONENT, routes } from '@/router'
 import Layout from '@/Layout'

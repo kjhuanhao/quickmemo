@@ -6,7 +6,7 @@ import Avatar from '@/assets/img/avatar.jpg'
 function Sidebar() {
   const navigate = useNavigate()
   return (
-    <div className='flex-col gap-10 mr-10 bg-gray-200 min-w-16 hidden pad:flex h-screen items-center'>
+    <div className='flex-col gap-10 mr-10 bg-accent min-w-16 hidden pad:flex h-screen items-center'>
       {/* 头像区域 */}
       <div className='flex mt-10'>
         <Button variant='ghost' size='icon'>
@@ -22,10 +22,10 @@ function Sidebar() {
                 key={item.path}
                 variant='ghost'
                 size='icon'
-                className='hover:bg-slate-50'
+                className='hover:bg-primary'
                 onClick={() => navigate(item.path)}
               >
-                <Icon size={20} className='hover:fill-primary' />
+                <Icon size={20} className='hover:fill-white' />
               </Button>
             </div>
           </Link>

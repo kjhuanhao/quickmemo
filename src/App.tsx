@@ -1,4 +1,4 @@
-import ThemeToggle from './components/ThemeToggle'
+// import ThemeToggle from './components/ThemeToggle'
 import { useTranslation } from 'react-i18next'
 import { Button } from './components/ui/button'
 import i18n from '@/config/i18n'
@@ -11,7 +11,7 @@ function App() {
     <>
       <h1 className='text-3xl font-bold'>{t('welcome')}</h1>
       <p>{t('currentTime')}</p>
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
       <Button
         className='ml-10'
         onClick={() => {

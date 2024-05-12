@@ -1,42 +1,50 @@
-import { LexicalComposer } from '@lexical/react/LexicalComposer'
-import { ContentEditable } from '@lexical/react/LexicalContentEditable'
-import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin'
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
-import { ListPlugin } from '@lexical/react/LexicalListPlugin'
-import { ListNode, ListItemNode } from '@lexical/list'
-import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
-import QuotePlugin from '@/components/Editor/plugins/Quote'
+import { Plate } from '@udecode/plate-common'
+import { Editor } from '@/components/ui/editor'
+import { plugins } from './plugins'
+import { TooltipProvider } from '@/components/ui/tooltip'
+import { MentionCombobox } from '@/components/ui/mention-combobox'
+import { TComboboxItemWithData } from '@udecode/plate-combobox'
+import { UploadImageProvider } from '@/context/uploadContext'
+import { TagCombobox } from '@/components/ui/tag-combobox'
 
-function Editor() {
-  function onError(error: unknown) {
-    console.error(error)
-  }
-  const initialConfig = {
-    namespace: 'MyEditor',
-    onError,
-    nodes: [ListNode, ListItemNode]
-  }
-
-  return (
-    <div className='relative top-0 w-full'>
-      <LexicalComposer initialConfig={initialConfig}>
-        <PlainTextPlugin
-          contentEditable={
-            <ContentEditable className='no-scrollbar w-full min-h-16 h-48 p-2 overflow-auto border rounded-md bg-white focus:shadow-lg focus:outline-primary border-slate-200' />
-          }
-          placeholder={<div className='absolute top-2 left-2'>现在的想法是...</div>}
-          ErrorBoundary={LexicalErrorBoundary}
-        />
-        <HistoryPlugin />
-        <QuotePlugin
-          onChange={editorState => {
-            console.log(editorState)
-          }}
-        />
-        <ListPlugin />
-      </LexicalComposer>
-    </div>
-  )
+interface EditorProps {
+  id: string
+  type: string
+  children: {
+    text: string
+  }[]
 }
 
-export default Editor
+const initialValue = [
+  {
+    id: '1',
+    type: 'p',
+    children: [{ text: 'Hello, World!' }]
+  }
+]
+
+const MENTIONABLES: TComboboxItemWithData<any>[] = [{ key: '0', text: 'Aayla Secura', data: 'https://' }]
+
+const listenEditor = (value: EditorProps[]) => {
+  const lastValue = value[0]
+  console.log(value)
+  if (lastValue.type === 'img') {
+    console.log(lastValue)
+  }
+}
+
+export default function PlateEditor() {
+  return (
+    <UploadImageProvider>
+      <div className='relative top-0'>
+        <TooltipProvider>
+          <Plate plugins={plugins} initialValue={initialValue} onChange={value => listenEditor(value)}>
+            <Editor />
+            <MentionCombobox items={MENTIONABLES} />
+            <TagCombobox items={MENTIONABLES} />
+          </Plate>
+        </TooltipProvider>
+      </div>
+    </UploadImageProvider>
+  )
+}

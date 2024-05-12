@@ -5,6 +5,7 @@
 @layer base {
   :root {
     --background: 207 82% 98%;
+    --text: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
@@ -27,9 +28,11 @@
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
+    --background: 0 0% 7%;
+    --text: 0 0% 100%;
+    --toast-background: 0 0% 15%;
     --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
+    --card: 0 0% 13%;
     --card-foreground: 210 20% 98%;
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
@@ -52,11 +55,13 @@
     display: none;
   }
 
+
   /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
 }
 
 @layer base {

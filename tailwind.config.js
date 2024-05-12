@@ -6,10 +6,17 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px'
-      }
+      padding: '2rem'
+    },
+    screens: {
+      phone: '576px',
+      // => @media (min-width: 576px) { ... }
+
+      pad: '768px',
+      // => @media (min-width: 960px) { ... }
+
+      desktop: '1200px'
+      // => @media (min-width: 1440px) { ... }
     },
     extend: {
       colors: {

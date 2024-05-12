@@ -8,7 +8,10 @@ import { resolve } from 'path'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    rollupOptions: {
+      external: 'typeorm'
+    }
   },
   base: './',
   resolve: {
