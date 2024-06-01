@@ -1,4 +1,4 @@
-import { ComboboxProps } from '@udecode/plate-combobox'
+import { ComboboxProps, type ComboboxItemProps } from '@udecode/plate-combobox'
 import { getPluginOptions, useEditorRef } from '@udecode/plate-common'
 import { ELEMENT_MENTION, getMentionOnSelectItem, MentionPlugin } from '@udecode/plate-mention'
 

@@ -39,7 +39,7 @@ import { createExitBreakPlugin } from '@udecode/plate-break'
 import { createAutoformatPlugin } from '@udecode/plate-autoformat'
 import { createHighlightPlugin, MARK_HIGHLIGHT } from '@udecode/plate-highlight'
 // import { createTagPlugin, ELEMENT_TAG, ELEMENT_TAG_INPUT } from '@/lib/plugins/tagPlugin'
-import { createTagPlugin, ELEMENT_TAG } from '@/lib/plugins/testPlugin'
+// import { createTagPlugin, ELEMENT_TAG } from '@/lib/plugins/testPlugin'
 
 import { ParagraphElement } from '@/components/ui/paragraph-element'
 import { createParagraphPlugin, ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph'
@@ -53,7 +53,6 @@ import { MentionInputElement } from '@/components/ui/mention-input-element'
 import { LinkFloatingToolbar } from '@/components/ui/link-floating-toolbar'
 import { TodoListElement } from '@/components/ui/todo-list-element'
 import { HighlightLeaf } from '@/components/ui/highlight-leaf'
-import { TagElement } from '../ui/tag-element'
 import { autoformatBlocks } from '@/lib/autoFormateRules/autoformatBlocks'
 import { autoformatLists } from '@/lib/autoFormateRules/autoformatLists'
 
@@ -85,8 +84,11 @@ export const plugins = createPlugins(
     createLinkPlugin({
       renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable
     }),
-    createMentionPlugin(),
-    createTagPlugin(),
+    // createMentionPlugin({
+    //  options: {
+    //    trigger: '#',
+    //  }
+    // }),
     createComboboxPlugin(),
     createImagePlugin(),
     createHighlightPlugin(),
@@ -166,10 +168,8 @@ export const plugins = createPlugins(
       [ELEMENT_LINK]: LinkElement,
       [ELEMENT_MENTION]: MentionElement,
       [ELEMENT_MENTION_INPUT]: MentionInputElement,
-      // [ELEMENT_TAG]: MentionElement,
       // [ELEMENT_TAG_INPUT]: MentionInputElement,
-      [MARK_HIGHLIGHT]: HighlightLeaf,
-      [ELEMENT_TAG]: TagElement
+      [MARK_HIGHLIGHT]: HighlightLeaf
     }
   }
 )

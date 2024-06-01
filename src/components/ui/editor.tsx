@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import { cn } from '@udecode/cn'
 import { PlateContent } from '@udecode/plate-common'
 import { cva } from 'class-variance-authority'
@@ -7,11 +7,17 @@ import type { VariantProps } from 'class-variance-authority'
 import { ImageList } from './image-list'
 import { FixedToolbar } from './fixed-toolbar'
 import { FixedToolbarButtons } from './fixed-toolbar-buttons'
+import { SelectedTagsList } from './selected-tags-list'
+import { useTags } from '@/hooks/useTags'
 
+interface ImageListRef {
+  hasImages: () => boolean
+  getImageCount: () => number
+}
 const editorVariants = cva(
   cn(
-    'relative whitespace-pre-wrap break-words',
-    'min-h-[170px] max-h-[450px] w-full rounded-md bg-card py-2 text-sm ring-offset-background placeholder:text-muted-foreground',
+    'whitespace-pre-wrap break-words',
+    'min-h-[180px] max-h-[620px] w-full rounded-md bg-card text-sm ring-offset-background placeholder:text-muted-foreground',
     '[&_[data-slate-placeholder]]:text-muted-foreground [&_[data-slate-placeholder]]:!opacity-100',
     '[&_[data-slate-placeholder]]:top-[auto_!important]',
     '[&_strong]:font-bold'
@@ -44,7 +50,17 @@ const editorVariants = cva(
     }
   }
 )
-
+const imageListVariants = cva(cn('px-3 mt-2'), {
+  variants: {
+    bottomWithTags: {
+      true: 'mb-4',
+      false: 'mb-14'
+    }
+  },
+  defaultVariants: {
+    bottomWithTags: false
+  }
+})
 export type EditorProps = PlateContentProps & VariantProps<typeof editorVariants>
 
 const Editor = React.memo(
@@ -54,6 +70,8 @@ const Editor = React.memo(
       const handleFocus = useCallback(() => {
         setIsFocused(true)
       }, [])
+
+      const { selectedTags, setSelectedTags } = useTags()
 
       const handleBlur = useCallback(() => {
         setIsFocused(false)
@@ -69,22 +87,34 @@ const Editor = React.memo(
               size,
               variant
             }),
-            className
+            className,
+            'relative py-2'
           )}
         >
-          <PlateContent
-            ref={ref}
-            className='focus:outline-none mb-1 px-3 max-h-80 overflow-y-auto no-scrollbar'
-            disableDefaultStyles={true}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            // readOnly={disabled ?? readOnly}
-            aria-disabled={disabled}
-            {...props}
-          />
-          <ImageList />
-
-          <FixedToolbar>
+          <div className=''>
+            <PlateContent
+              ref={ref}
+              className='focus:outline-none mb-1 px-3 max-h-[350px] overflow-y-auto scrollbar-transparent'
+              disableDefaultStyles={true}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              aria-disabled={disabled}
+              {...props}
+            />
+          </div>
+          <div>
+            <ImageList className={imageListVariants({ bottomWithTags: selectedTags.length > 0 })} />
+            {(selectedTags.length > 0 && (
+              <SelectedTagsList
+                tags={selectedTags}
+                setTags={setSelectedTags}
+                isCancelable={true}
+                className='bg-card px-3 mb-10'
+              />
+            )) ||
+              null}
+          </div>
+          <FixedToolbar className='absolute bottom-0 left-0 right-0'>
             <FixedToolbarButtons />
           </FixedToolbar>
         </div>

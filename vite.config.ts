@@ -7,11 +7,10 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  appType: 'mpa',
   build: {
     outDir: 'dist',
-    rollupOptions: {
-      external: 'typeorm'
-    }
+    assetsDir: 'assets'
   },
   base: './',
   resolve: {

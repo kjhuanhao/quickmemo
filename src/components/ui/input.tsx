@@ -6,8 +6,7 @@ export const inputVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'border border-input ring-offset-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+        default: 'border border-input ring-offset-background focus-visible:ring-2 focus-visible:ring-ring',
         ghost: 'border-none focus-visible:ring-transparent'
       },
       h: {

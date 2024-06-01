@@ -8,13 +8,15 @@ export interface UploadImageContextType {
   addFile: (file: RcFile) => void
   removeFile: (file: RcFile) => void
   removeAll: () => void
+  getImageCount: () => number
 }
 
 const defaultUploadImageContext: UploadImageContextType = {
   state: {},
   addFile: () => {},
   removeFile: () => {},
-  removeAll: () => {}
+  removeAll: () => {},
+  getImageCount: () => 0
 }
 
 export const UploadImageContext = createContext<UploadImageContextType>(defaultUploadImageContext)
@@ -31,7 +33,6 @@ interface Action {
     file?: RcFile
   }
 }
-
 const reducer = (state: UploadImageState, action: Action): UploadImageState => {
   switch (action.type) {
     case 'ADD_FILE':
@@ -87,9 +88,11 @@ export const UploadImageProvider: React.FC<UploadImageProviderProps> = ({ childr
       payload: {}
     })
   }
-
+  const getImageCount = () => {
+    return Object.keys(state).length
+  }
   return (
-    <UploadImageContext.Provider value={{ state, addFile, removeFile, removeAll }}>
+    <UploadImageContext.Provider value={{ state, addFile, removeFile, removeAll, getImageCount }}>
       {children}
     </UploadImageContext.Provider>
   )

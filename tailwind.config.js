@@ -27,7 +27,8 @@ module.exports = {
         foreground: 'hsl(var(--foreground))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          foreground: 'hsl(var(--primary-foreground))',
+          secondary: 'hsl(var(--primary-secondary))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -52,6 +53,10 @@ module.exports = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+        tag: {
+          DEFAULT: 'hsl(var(--tag))',
+          foreground: 'hsl(var(--tag-foreground))'
         }
       },
       borderRadius: {

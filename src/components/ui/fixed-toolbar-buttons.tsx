@@ -2,13 +2,14 @@ import React, { useContext } from 'react'
 import { InsertDropdownMenu } from './insert-dropdown-menu'
 import { ToolbarGroup } from './toolbar'
 import { MentionsToolbarButton } from './mentions-toolbar-button'
-import { MarksPopover } from './popover-marks'
+import { MarksPopoverToolbarButton } from './marks-popover-toolbar-button'
 import { ImageToolbarButton } from './image-toolbar-button'
 import { ListToolbarButton } from './list-toolbar-button'
 import { ELEMENT_OL, ELEMENT_UL } from '@udecode/plate-list'
 import { SaveToolbarButton } from './save-toolbar-button'
 import { useEditorRef } from '@udecode/plate-common'
 import { UploadImageContext } from '@/context/uploadContext'
+import { TagPopoverToolbarButton } from './tag-popover-toolbar-button'
 
 export const FixedToolbarButtons = React.memo(() => {
   const editor = useEditorRef()
@@ -27,13 +28,14 @@ export const FixedToolbarButtons = React.memo(() => {
         </ToolbarGroup>
 
         <ToolbarGroup>
-          <MarksPopover />
+          <MarksPopoverToolbarButton />
           <ListToolbarButton nodeType={ELEMENT_UL} />
           <ListToolbarButton nodeType={ELEMENT_OL} />
         </ToolbarGroup>
 
         <ToolbarGroup>
-          <MentionsToolbarButton />
+          {/* <MentionsToolbarButton /> */}
+          <TagPopoverToolbarButton />
         </ToolbarGroup>
 
         <div className='grow' />
