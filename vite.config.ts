@@ -6,9 +6,7 @@ import { resolve } from 'path'
 import mpaPlugin from 'vite-plugin-mpa-plus'
 import type { Rewrite, Pages } from 'vite-plugin-mpa-plus'
 
-const rewrites: Array<Rewrite> = [
-  { from: /.*/, to: './index.html' } 
-]
+const rewrites: Array<Rewrite> = [{ from: /.*/, to: './index.html' }]
 const pages: any | Pages = [
   {
     entry: resolve(__dirname, './src/main.ts'),
@@ -48,4 +46,15 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer]
     }
   },
+  server: {
+    host: '127.0.0.1',
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:53361/api/v1',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })

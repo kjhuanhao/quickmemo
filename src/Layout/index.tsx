@@ -2,19 +2,21 @@ import { Outlet } from 'react-router-dom'
 import Sidebar from '@/components/Sidebar'
 import BottomMenu from '@/components/BottomMenu'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { Toaster } from 'react-hot-toast'
 import { Button } from '@/components/ui/button'
-import { successToast } from '@/utils/toast'
+import { successToast } from '@/utils'
+import { Toast } from '@/components/Toast'
+import { useEffect } from 'react'
+import { getUserInfoReq } from '@/api/login'
 
 const Layout = () => {
+  useEffect(() => {
+    getUserInfoReq().then(res => {
+      window.localStorage.setItem('userInfo', JSON.stringify(res))
+    })
+  })
   return (
     <div className='flex flex-row w-screen'>
-      <Toaster
-        position='top-center'
-        toastOptions={{
-          className: 'dark:!bg-[#262626] dark:!text-slate-100 !border-border dark:!border'
-        }}
-      />
+      <Toast />
       <Sidebar />
       <BottomMenu />
       <div className='min-w-80 h-screen border-r-slate-300 border-r hidden pad:flex'>

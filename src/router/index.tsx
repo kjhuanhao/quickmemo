@@ -1,12 +1,12 @@
 import Home from '@/pages/Home'
 import { LayoutGrid, LucideProps } from 'lucide-react'
 
-type MenuType = 'sidebar' | 'bottom' | 'all'
+type MenuType = 'sidebar' | 'bottom' | 'all' | 'none'
 
 interface IRoute {
   path: string
   name: string
-  icon: React.ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>>
+  icon?: React.ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>>
   hideInMenu: boolean
   menuType: MenuType
   element: () => JSX.Element

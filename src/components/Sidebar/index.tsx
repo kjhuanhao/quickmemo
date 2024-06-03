@@ -14,22 +14,24 @@ function Sidebar() {
         </Button>
       </div>
       {routes.map(item => {
-        const Icon = item.icon
-        return (
-          <Link key={item.key} to={item.path}>
-            <div>
-              <Button
-                key={item.path}
-                variant='ghost'
-                size='icon'
-                className='hover:bg-primary'
-                onClick={() => navigate(item.path)}
-              >
-                <Icon size={20} className='hover:fill-white' />
-              </Button>
-            </div>
-          </Link>
-        )
+        if (!item.hideInMenu) {
+          const Icon = item.icon!
+          return (
+            <Link key={item.key} to={item.path}>
+              <div>
+                <Button
+                  key={item.path}
+                  variant='ghost'
+                  size='icon'
+                  className='hover:bg-[#ececec] dark:hover:bg-[#272727]'
+                  onClick={() => navigate(item.path)}
+                >
+                  <Icon size={20} className='fill-[#8b8b8b] dark:fill-[#8b8b8b]' color='#8b8b8b' />
+                </Button>
+              </div>
+            </Link>
+          )
+        }
       })}
     </div>
   )
