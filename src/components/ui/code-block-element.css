@@ -1,5 +1,6 @@
 /* stylelint-disable selector-class-pattern */
 /* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-duplicate-selectors */
 
 /**
  * One Light theme for prism.js
@@ -357,7 +358,7 @@ pre > code.diff-highlight .token.token.deleted:not(.prefix) {
 pre.diff-highlight > code .token.token.deleted:not(.prefix)::selection,
 pre.diff-highlight > code .token.token.deleted:not(.prefix) *::selection,
 pre > code.diff-highlight .token.token.deleted:not(.prefix)::selection,
-pre > code.diff-highlight .token.token.deleted:not(.prefix) *::-moz-selection {
+pre > code.diff-highlight .token.token.deleted:not(.prefix) *::selection {
   background-color: hsl(353deg 95% 66% / 25%);
 }
 
@@ -376,7 +377,7 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) {
 pre.diff-highlight > code .token.token.inserted:not(.prefix)::selection,
 pre.diff-highlight > code .token.token.inserted:not(.prefix) *::selection,
 pre > code.diff-highlight .token.token.inserted:not(.prefix)::selection,
-pre > code.diff-highlight .token.token.inserted:not(.prefix) *::-moz-selection {
+pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
   background-color: hsl(135deg 73% 55% / 25%);
 }
 

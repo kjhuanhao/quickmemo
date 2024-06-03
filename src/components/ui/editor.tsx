@@ -10,10 +10,6 @@ import { FixedToolbarButtons } from './fixed-toolbar-buttons'
 import { SelectedTagsList } from './selected-tags-list'
 import { useTags } from '@/hooks/useTags'
 
-interface ImageListRef {
-  hasImages: () => boolean
-  getImageCount: () => number
-}
 const editorVariants = cva(
   cn(
     'whitespace-pre-wrap break-words',

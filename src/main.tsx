@@ -6,7 +6,6 @@ import { ROUTE_COMPONENT, routes } from '@/router'
 import Layout from '@/Layout'
 import './index.css'
 import '@/config/i18n'
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme='light' storageKey='theme'>
