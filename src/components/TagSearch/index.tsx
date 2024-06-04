@@ -1,12 +1,24 @@
-import React, { useState } from 'react'
-import type { Tags } from '@/types/tags'
+import React, { useEffect, useState } from 'react'
+import type { Tags, TagsEntity } from '@/types/tags'
 import { useTags } from '@/hooks/useTags'
 import { TagsDataBase } from '@/utils/storage/tagsDataBase'
+import { createTagsReq } from '@/api/tags'
+import { successToast } from '@/utils'
 
 export const TagSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [results, setResults] = useState<Tags[]>([])
   const { selectedTags, setSelectedTags } = useTags()
+
+  useEffect(() => {
+    const tagDB = TagsDataBase.getInstance()
+    const fetchLocalTags = async () => {
+      tagDB.getAllRecords().then(res => {
+        setResults(res)
+      })
+    }
+    fetchLocalTags()
+  }, [])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
@@ -25,16 +37,16 @@ export const TagSearch: React.FC = () => {
   }
   const handleCreateTag = () => {
     if (searchTerm.trim() !== '') {
-      const newTag: Tags = { count: 0, name: `${searchTerm}` }
-      try {
+      createTagsReq({ name: searchTerm.trim() }).then(res => {
+        const newTag = res
+        setResults(prevResults => [newTag, ...prevResults])
+        setSelectedTags(prevSelectedTags => [newTag, ...prevSelectedTags])
+        // 插入到 indexedDB
         const tagsDB = TagsDataBase.getInstance()
         tagsDB.addRecord(newTag)
-      } catch (error) {
-        console.log('error add tags')
-      }
-      setResults(prevResults => [newTag, ...prevResults])
-      setSelectedTags(prevSelectedTags => [newTag, ...prevSelectedTags])
-      setSearchTerm('')
+        successToast('新建标签成功')
+        setSearchTerm('')
+      })
     }
   }
 

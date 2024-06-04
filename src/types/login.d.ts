@@ -1,4 +1,4 @@
-interface LoginRequest {
+interface LoginDto {
   email: string
   password: string
 }
@@ -8,7 +8,7 @@ interface LoginResponse {
   refreshToken: string
 }
 
-interface RegisterRequest {
+interface RegisterDto {
   email: string
   password: string
   confirmPassword: string

@@ -1,4 +1,4 @@
-import type { TagsEntity, TagsDto } from '@/types/tags'
+import type { TagsEntity } from '@/types/tags'
 import Dexie from 'dexie'
 import { MemoDataBase } from './memoDataBase'
 import { INDEX_DATABASE_NAME } from '@/constants/database'
@@ -29,7 +29,7 @@ export class TagsDataBase extends Dexie {
   }
 
   // 添加 Tag
-  async addRecord(tagDto: TagsDto): Promise<void> {
+  async addRecord(tagDto: TagsEntity): Promise<void> {
     try {
       await this.tags.add(tagDto)
       console.log('Tag added successfully!')
@@ -39,7 +39,7 @@ export class TagsDataBase extends Dexie {
   }
 
   // 更新 Tag
-  async updateRecord(id: number, updatedTag: Partial<TagsDto>): Promise<void> {
+  async updateRecord(id: number, updatedTag: Partial<TagsEntity>): Promise<void> {
     try {
       await this.tags.update(id, updatedTag)
       console.log('Tag updated successfully!')

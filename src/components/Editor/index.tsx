@@ -2,8 +2,8 @@ import { Plate } from '@udecode/plate-common'
 import { Editor } from '@/components/ui/editor'
 import { plugins } from './plugins'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { UploadImageProvider } from '@/context/uploadContext'
 import { SelectedTagsProvider } from '@/context/SelectedTagsContext'
+import { ImageProvider } from '@/context/ImageContext'
 
 interface EditorProps {
   id: string
@@ -27,7 +27,7 @@ export default function PlateEditor() {
   return (
     <div>
       <SelectedTagsProvider>
-        <UploadImageProvider>
+        <ImageProvider>
           <div className='relative top-0'>
             <TooltipProvider>
               <Plate plugins={plugins}>
@@ -37,7 +37,7 @@ export default function PlateEditor() {
               </Plate>
             </TooltipProvider>
           </div>
-        </UploadImageProvider>
+        </ImageProvider>
       </SelectedTagsProvider>
     </div>
   )

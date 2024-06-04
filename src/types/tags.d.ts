@@ -1,13 +1,22 @@
-export interface Tags {
-  id?: number
+export interface TagsResponse {
+  id: number
   count: number
+  name: string
+  createdBy: string
+}
+
+export type TagsEntity = TagsResponse
+export type Tags = Omit<TagsEntity, 'createdBy'>
+
+interface CreateTagsDto {
   name: string
 }
 
-export interface TagsEntity {
-  id?: number
-  count: number
+interface UpdateTagsDto {
+  id: string
   name: string
 }
 
-export type TagsDto = TagsEntity
+interface DeleteTagsDto {
+  id: string
+}

@@ -1,12 +1,12 @@
 import { request } from './request'
 
-export const loginReq = (data: LoginRequest): Promise<LoginResponse> => {
+export const loginReq = (data: LoginDto): Promise<LoginResponse> => {
   return request.post('/user/login', {
     ...data
   })
 }
 
-export const registerReq = (data: RegisterRequest): Promise<unknown> => {
+export const registerReq = (data: RegisterDto): Promise<unknown> => {
   return request.post('/user/register', {
     ...data
   })
