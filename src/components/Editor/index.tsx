@@ -4,6 +4,7 @@ import { plugins } from './plugins'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { SelectedTagsProvider } from '@/context/SelectedTagsContext'
 import { ImageProvider } from '@/context/ImageContext'
+import { MemoProvider } from '@/context/MemosContext'
 
 interface EditorProps {
   id: string
@@ -26,19 +27,21 @@ const initialValue = [
 export default function PlateEditor() {
   return (
     <div>
-      <SelectedTagsProvider>
-        <ImageProvider>
-          <div className='relative top-0'>
-            <TooltipProvider>
-              <Plate plugins={plugins}>
-                <Editor placeholder='Typing something here...' />
-                {/* <MentionCombobox items={MENTIONABLES} /> */}
-                {/* <div className='w-full mt-4'><TagSelect/></div> */}
-              </Plate>
-            </TooltipProvider>
-          </div>
-        </ImageProvider>
-      </SelectedTagsProvider>
+      <MemoProvider>
+        <SelectedTagsProvider>
+          <ImageProvider>
+            <div className='relative top-0'>
+              <TooltipProvider>
+                <Plate plugins={plugins}>
+                  <Editor placeholder='Typing something here...' />
+                  {/* <MentionCombobox items={MENTIONABLES} /> */}
+                  {/* <div className='w-full mt-4'><TagSelect/></div> */}
+                </Plate>
+              </TooltipProvider>
+            </div>
+          </ImageProvider>
+        </SelectedTagsProvider>
+      </MemoProvider>
     </div>
   )
 }

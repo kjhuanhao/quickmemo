@@ -1,5 +1,5 @@
 export interface TagsResponse {
-  id: number
+  id: string
   count: number
   name: string
   createdBy: string
@@ -19,4 +19,11 @@ interface UpdateTagsDto {
 
 interface DeleteTagsDto {
   id: string
+}
+interface Tag extends TagsEntity {
+  children?: Tag[]
+}
+
+interface TagNode extends Omit<Tag, 'children'> {
+  children?: { [key: string]: TagNode }
 }

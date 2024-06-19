@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import type { Tags, TagsEntity } from '@/types/tags'
-import { useTags } from '@/hooks/useTags'
 import { TagsDataBase } from '@/utils/storage/tagsDataBase'
 import { createTagsReq } from '@/api/tags'
 import { successToast } from '@/utils'
+import { useTagsContext } from '@/context/SelectedTagsContext'
 
 export const TagSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [results, setResults] = useState<Tags[]>([])
-  const { selectedTags, setSelectedTags } = useTags()
+  const { selectedTags, setSelectedTags } = useTagsContext()
 
   useEffect(() => {
     const tagDB = TagsDataBase.getInstance()
     const fetchLocalTags = async () => {
       tagDB.getAllRecords().then(res => {
+        console.log(res, 'tags')
         setResults(res)
       })
     }

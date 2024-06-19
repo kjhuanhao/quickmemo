@@ -10,7 +10,7 @@ export class MemoDataBase extends Dexie {
   private constructor() {
     super(INDEX_DATABASE_NAME)
     this.version(1).stores({
-      memos: '&id, content, tag, imageIdList, createTime, updateTime'
+      memos: '&id, content, tags, images, createdTime, updatedTime'
     })
     this.memos = this.table('memos')
   }
@@ -22,9 +22,9 @@ export class MemoDataBase extends Dexie {
     return MemoDataBase.instance
   }
 
-  // 查询所有的 memo
+  // 查询所有的 memo，按 createdTime 排序
   async getAllRecords(): Promise<MemoEntity[]> {
-    return await this.memos.toArray()
+    return await this.memos.orderBy('createdTime').reverse().toArray()
   }
 
   // 添加 Memo
@@ -72,11 +72,33 @@ export class MemoDataBase extends Dexie {
   // 查找所有包含指定 tag 的 memos
   async findMemosByTag(tag: string): Promise<MemoEntity[]> {
     try {
-      const memos = await this.memos.where('tag').equals(tag).toArray()
+      const memos = await this.memos.where('tags').equals(tag).toArray()
       console.log(`Memos with tag "${tag}" retrieved successfully!`)
       return memos
     } catch (error) {
       console.error(`Failed to retrieve memos with tag "${tag}":`, error)
+      return []
+    }
+  }
+
+  async deleteAllMemos() {
+    try {
+      await this.memos.clear()
+      console.log('All memos deleted successfully!')
+    } catch (error) {
+      console.error('Failed to delete all memos:', error)
+    }
+  }
+
+  // 分页查询 Memo
+  async getRecordsByPage(page: number, pageSize: number): Promise<MemoEntity[]> {
+    try {
+      const offset = (page - 1) * pageSize
+      const memos = await this.memos.orderBy('createdTime').reverse().offset(offset).limit(pageSize).toArray()
+      console.log(`Memos retrieved successfully for page ${page}!`)
+      return memos
+    } catch (error) {
+      console.error(`Failed to retrieve memos for page ${page}:`, error)
       return []
     }
   }

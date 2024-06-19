@@ -28,11 +28,20 @@ module.exports = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
-          secondary: 'hsl(var(--primary-secondary))',
+          secondary: 'hsl(var(--primary-secondary))'
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))'
+        },
+        sidebar: {
+          background: 'hsl(var(--sidebar-background))',
+          border: 'hsl(var(--sidebar-border))',
+          text: 'hsl(var(--sidebar-text))',
+          hover: 'hsl(var(--sidebar-hover))'
+        },
+        secondSidebar: {
+          background: 'hsl(var(--second-sidebar-background))'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -52,7 +61,8 @@ module.exports = {
         },
         card: {
           DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))'
+          foreground: 'hsl(var(--card-foreground))',
+          text: 'hsl(var(--card-text))'
         },
         tag: {
           DEFAULT: 'hsl(var(--tag))',

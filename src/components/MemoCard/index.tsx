@@ -1,17 +1,26 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card'
+import type { MemoEntity } from '@/types/memo'
+import { getFullTime } from '../../utils/day'
 import { SelectedTagsList } from '../ui/selected-tags-list'
+import { cn } from '@/lib/utils'
 
-export default function MemoCard() {
+interface MemoCardProps {
+  memo: MemoEntity
+  className?: string
+}
+
+export const MemoCard: React.FC<MemoCardProps> = ({ memo, className }) => {
   return (
-    <Card>
+    <Card className={cn(className, 'hover:shadow-lg cursor-pointer')}>
       <CardHeader>
-        {/* <CardTitle>Card Title</CardTitle> */}
-        <CardDescription>2024-02-20 22:08:46</CardDescription>
+        <CardDescription>{getFullTime(memo.createdTime)}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>你好，世界</p>
+        <div dangerouslySetInnerHTML={{ __html: memo.content }} />
       </CardContent>
-      <CardFooter>{/* <SelectedTagsList tags={['tag1', 'tag2', 'tag3']} /> */}</CardFooter>
+      <CardFooter>
+        <SelectedTagsList tags={[]} cardTags={memo.tags} />
+      </CardFooter>
     </Card>
   )
 }

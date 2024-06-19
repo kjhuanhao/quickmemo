@@ -84,4 +84,8 @@ export class TagsDataBase extends Dexie {
       return undefined
     }
   }
+
+  async deleteAllTags() {
+    await this.tags.clear()
+  }
 }

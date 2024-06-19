@@ -27,7 +27,7 @@ class AxiosSingleton {
   private static createInstance(config?: AxiosRequestConfig): AxiosInstance {
     const instance = axios.create({
       baseURL: '/api',
-      timeout: 2000, //超时配置
+      timeout: 5000, //超时配置
       withCredentials: true, //跨域携带cookie
       ...config // 自定义配置覆盖基本配置
     })

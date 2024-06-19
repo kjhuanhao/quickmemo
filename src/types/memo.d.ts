@@ -6,16 +6,16 @@ export interface MemoEntity {
 
   content: string
 
-  tag: string[]
+  tags: string[]
 
-  imageIdList: string[]
+  images: string[]
 
-  createTime: string
+  createdTime: Date
 
-  updateTime: string
+  updatedTime: Date
 }
 
-export type MemoDto = Omit<MemoEntity, 'id' | 'createTime' | 'updateTime'>
+export type MemoDto = Omit<MemoEntity, 'id' | 'createdTime' | 'updatedTime'>
 
 // 定义文本节点的接口
 interface TextNode {

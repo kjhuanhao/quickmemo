@@ -4,6 +4,7 @@ import { SlideToolbar, CloseButton } from 'react-image-previewer/ui'
 import { cn } from '@udecode/cn'
 import { useDropzone } from 'react-dropzone'
 import { useImageContext } from '@/context/ImageContext'
+import { Progress } from '@/components/ui/progress'
 
 interface ImageUploadProps {
   className?: string
@@ -56,14 +57,7 @@ export const ImageList: React.FC<ImageUploadProps> = ({ className }) => {
                     </div>
                     {image.progress < 100 && (
                       <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-50'>
-                        <div className='w-1/2 bg-gray-200 rounded-full'>
-                          <div
-                            className='bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full'
-                            style={{ width: `${image.progress}%` }}
-                          >
-                            {image.progress}%
-                          </div>
-                        </div>
+                        <Progress value={image.progress} />
                       </div>
                     )}
                   </div>

@@ -1,15 +1,13 @@
-import Editor from '@/components/Editor'
-import MemoCard from '@/components/MemoCard'
-import { useEffect } from 'react'
-
+import { SyncProvider } from '@/context/SyncContext'
+import Memo from '../Memo'
+import { MemoProvider } from '@/context/MemosContext'
 function Home() {
   return (
-    <div>
-      <Editor />
-      <div className='flex flex-col gap-2 mt-5'>
-        <MemoCard />
-      </div>
-    </div>
+    <MemoProvider>
+      <SyncProvider>
+        <Memo />
+      </SyncProvider>
+    </MemoProvider>
   )
 }
 

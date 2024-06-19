@@ -4,15 +4,21 @@
 
 @layer base {
   :root {
-    --background: 207 82% 98%;
+    --background: 218 100% 98%;
     --text: 0 0% 100%;
     --tag: 251 90% 55%;
     --foreground: 224 71.4% 4.1%;
+    --sidebar-background: 220, 20%, 94%;
+    --sidebar-text: 0 0% 34%;
+    --sidebar-hover: 0 0% 85%;
+    --second-sidebar-background: 220, 20%, 94%;
+    --sidebar-border: 218 18% 91%;
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
+    --card-text: 270 1% 42%;
     --popover: 0 0% 100%;
     --popover-foreground: 224 71.4% 4.1%;
-    --primary: 262.1 83.3% 57.8%;
+    --primary: 248 91% 62%;
     --primary-secondary: 262.1 83.3% 60%;
     --primary-foreground: 210 20% 98%;
     --secondary: 220 14.3% 95.9%;
@@ -31,16 +37,22 @@
   }
 
   .dark {
-    --background: 0 0% 7%;
+    --background: 0, 0%, 12%;
     --text: 0 0% 100%;
     --tag: 263 50% 65%;
     --toast-background: 0 0% 15%;
+    --sidebar-background: 0 0% 15%;
+    --sidebar-text: 210 1% 67%;
+    --sidebar-hover: 0 2% 22%;
+    --second-sidebar-background: 0 0% 15%;
+    --sidebar-border: 0 0% 21%;
     --foreground: 210 20% 98%;
-    --card: 0 0% 13%;
+    --card: 0 2% 22%;
     --card-foreground: 210 20% 98%;
+    --card-text: 210 1% 67%;
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
-    --primary: 263.4 70% 50.4%;
+    --primary: 248 69% 62%;
     --primary-secondary: 262.1 83.3% 60%;
     --primary-foreground: 210 20% 98%;
     --secondary: 215 27.9% 16.9%;

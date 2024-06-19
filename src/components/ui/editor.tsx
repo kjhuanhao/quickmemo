@@ -8,7 +8,7 @@ import { ImageList } from './image-list'
 import { FixedToolbar } from './fixed-toolbar'
 import { FixedToolbarButtons } from './fixed-toolbar-buttons'
 import { SelectedTagsList } from './selected-tags-list'
-import { useTags } from '@/hooks/useTags'
+import { useTagsContext } from '@/context/SelectedTagsContext'
 
 const editorVariants = cva(
   cn(
@@ -67,7 +67,7 @@ const Editor = React.memo(
         setIsFocused(true)
       }, [])
 
-      const { selectedTags, setSelectedTags } = useTags()
+      const { selectedTags, setSelectedTags } = useTagsContext()
 
       const handleBlur = useCallback(() => {
         setIsFocused(false)

@@ -11,3 +11,16 @@ export const errorToast = (message: string) => {
 export const loadingToast = (message: string = 'Loading...') => {
   toast.loading(message)
 }
+
+export const promiseToast = (
+  promise: Promise<any>,
+  loadingText: string = '加载中...',
+  successText: string = '成功',
+  errorText: string = '失败'
+) => {
+  toast.promise(promise, {
+    loading: loadingText,
+    success: successText,
+    error: errorText
+  })
+}

@@ -1,5 +1,5 @@
 import type { Tags } from '@/types/tags'
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 export interface TagsContextType {
   selectedTags: Tags[]
@@ -16,6 +16,14 @@ const defaultTagsContext: TagsContextType = {
 }
 
 export const SelectedTagsContext = createContext<TagsContextType>(defaultTagsContext)
+
+export const useTagsContext = () => {
+  const context = useContext(SelectedTagsContext)
+  if (!context) {
+    throw new Error('useTagsContext must be used within an SelectedTagsProvider')
+  }
+  return context
+}
 
 export const SelectedTagsProvider: React.FC<TagsProviderProps> = ({ children }) => {
   const [selectedTags, setSelectedTags] = useState<Tags[]>([])

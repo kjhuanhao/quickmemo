@@ -64,7 +64,18 @@ import {
   Type,
   Highlighter,
   Hash,
-  Send
+  Send,
+  RefreshCwIcon,
+  ChevronUp,
+  RssIcon,
+  Globe,
+  Star,
+  Timer,
+  LucideChevronRight,
+  Link,
+  Unlink,
+  Share2,
+  SquarePen
 } from 'lucide-react'
 
 import type { LucideIcon } from 'lucide-react'
@@ -231,6 +242,17 @@ export const Icons = {
   highlight: Highlighter,
   tag: Hash,
   send: Send,
+  reload: RefreshCwIcon,
+  arrowUp: ChevronUp,
+  arrowRight: LucideChevronRight,
+  rss: RssIcon,
+  star: Star,
+  subscribe: Globe,
+  time: Timer,
+  subscribed: Link,
+  unSubScribed: Unlink,
+  share: Share2,
+  edit: SquarePen,
   // www
   gitHub: (props: LucideProps) => (
     <svg viewBox='0 0 438.549 438.549' {...props}>

@@ -1,10 +1,12 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { request } from '@/api/request'
+import { errorToast } from '@/utils'
 
 interface ImageContextType {
   images: { file: File; progress: number; url?: string }[]
   addImages: (files: File[]) => void
   removeImage: (index: number) => void
+  removeAllImages: () => void
 }
 
 const ImageContext = createContext<ImageContextType | undefined>(undefined)
@@ -42,7 +44,7 @@ export const ImageProvider = ({ children }: { children: ReactNode }) => {
         return updatedImages
       })
     } else {
-      alert('最多只能上传9张图片')
+      errorToast('最多只能上传9张图片')
     }
   }
 
@@ -55,7 +57,7 @@ export const ImageProvider = ({ children }: { children: ReactNode }) => {
     formData.append('files', image)
 
     try {
-      const response: any = await request.request({
+      const response: string[] = await request.request({
         method: 'POST',
         url: '/common/upload',
         headers: {
@@ -68,11 +70,18 @@ export const ImageProvider = ({ children }: { children: ReactNode }) => {
         }
       })
 
-      setImages(prevImages => prevImages.map((img, i) => (i === index ? { ...img, url: response[0].url } : img)))
+      setImages(prevImages => prevImages.map((img, i) => (i === index ? { ...img, url: response[0] } : img)))
     } catch (error) {
       console.error('上传失败', error)
     }
   }
 
-  return <ImageContext.Provider value={{ images, addImages, removeImage }}>{children}</ImageContext.Provider>
+  const removeAllImages = () => {
+    setImages([])
+  }
+  return (
+    <ImageContext.Provider value={{ images, addImages, removeImage, removeAllImages }}>
+      {children}
+    </ImageContext.Provider>
+  )
 }
