@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import type { Tags, TagsEntity } from '@/types/tags'
+import type { TagsEntity } from '@/types/tags'
 import { TagsDataBase } from '@/utils/storage/tagsDataBase'
 import { createTagsReq } from '@/api/tags'
 import { successToast } from '@/utils'
-import { useTagsContext } from '@/context/SelectedTagsContext'
 
-export const TagSearch: React.FC = () => {
+export interface TagSearchProps {
+  selectedTags: TagsEntity[]
+  setSelectedTags: React.Dispatch<React.SetStateAction<TagsEntity[]>>
+}
+
+export const TagSearch: React.FC<TagSearchProps> = ({ selectedTags, setSelectedTags }) => {
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const [results, setResults] = useState<Tags[]>([])
-  const { selectedTags, setSelectedTags } = useTagsContext()
+  const [results, setResults] = useState<TagsEntity[]>([])
 
   useEffect(() => {
     const tagDB = TagsDataBase.getInstance()
@@ -25,8 +28,8 @@ export const TagSearch: React.FC = () => {
     setSearchTerm(event.target.value)
   }
 
-  const handleTagClick = (tag: Tags) => {
-    setSelectedTags((prevSelectedTags: Tags[]) => {
+  const handleTagClick = (tag: TagsEntity) => {
+    setSelectedTags((prevSelectedTags: TagsEntity[]) => {
       if (prevSelectedTags.find(t => t.id === tag.id)) {
         // 如果标签已经被选中，则取消选中
         return prevSelectedTags.filter(t => t.id !== tag.id)
@@ -36,6 +39,7 @@ export const TagSearch: React.FC = () => {
       }
     })
   }
+
   const handleCreateTag = () => {
     if (searchTerm.trim() !== '') {
       createTagsReq({ name: searchTerm.trim() }).then(res => {
@@ -71,7 +75,7 @@ export const TagSearch: React.FC = () => {
               新建标签: {`# ${searchTerm}`}
             </li>
           )}
-          {selectedTags.map((tag: Tags, index: number) => (
+          {selectedTags.map((tag: TagsEntity, index: number) => (
             <li
               key={`selected-${index}`}
               className='p-2 mb-2 rounded cursor-pointer text-tag bg-tag-foreground'

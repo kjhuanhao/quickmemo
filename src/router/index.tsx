@@ -16,7 +16,8 @@ interface IRoute {
 }
 
 export const ROUTE_KEY = {
-  HOME: 'memo',
+  HOME: 'home',
+  MEMO: 'memo',
   RSS_ALL: 'rss',
   RSS_READ_LATER: 'rss/readLater',
   RSS_SUBSCRIPTION: 'rss/subscription'
@@ -24,10 +25,18 @@ export const ROUTE_KEY = {
 
 export const ROUTE_CONFIG: Record<string, IRoute> = {
   [ROUTE_KEY.HOME]: {
-    path: 'memo',
+    path: '',
     name: ROUTE_KEY.HOME,
     icon: LayoutGrid,
     hideInMenu: false,
+    menuType: 'all',
+    element: Home
+  },
+  [ROUTE_KEY.MEMO]: {
+    path: 'memo',
+    name: ROUTE_KEY.MEMO,
+    icon: LayoutGrid,
+    hideInMenu: true,
     menuType: 'all',
     element: Home
   },
@@ -59,6 +68,7 @@ export const ROUTE_CONFIG: Record<string, IRoute> = {
 
 export const ROUTE_COMPONENT = {
   [ROUTE_KEY.HOME]: Home,
+  [ROUTE_KEY.MEMO]: Home,
   [ROUTE_KEY.RSS_ALL]: RssPage,
   [ROUTE_KEY.RSS_READ_LATER]: ReadLater,
   [ROUTE_KEY.RSS_SUBSCRIPTION]: RssInfoCard

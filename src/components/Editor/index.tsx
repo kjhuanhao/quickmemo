@@ -1,47 +1,46 @@
-import { Plate } from '@udecode/plate-common'
+import { createPlateEditor, Plate } from '@udecode/plate-common'
 import { Editor } from '@/components/ui/editor'
 import { plugins } from './plugins'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { SelectedTagsProvider } from '@/context/SelectedTagsContext'
 import { ImageProvider } from '@/context/ImageContext'
-import { MemoProvider } from '@/context/MemosContext'
+import { useEffect, useMemo, useState } from 'react'
+import { deserialize } from '@/utils'
 
 interface EditorProps {
-  id: string
-  type: string
-  children: {
-    text: string
-  }[]
+  html?: string
 }
 
-const initialValue = [
-  {
-    id: '1',
-    type: 'p',
-    children: [{ text: 'Hello, World!' }]
-  }
-]
+const PlateEditor: React.FC<EditorProps> = ({ html }) => {
+  const [initialValue, setInitialValue] = useState<any[] | undefined>(undefined)
+  const [key, setKey] = useState(0)
 
-// const MENTIONABLES: TComboboxItemWithData<any>[] = [{ key: '0', text: 'Aayla Secura', data: 'https://' }]
+  useEffect(() => {
+    if (html) {
+      const value = deserialize(html)
+      setInitialValue(value.length > 0 ? value : initialValue)
+      setKey(prevKey => prevKey + 1) // 更新 key 以强制重新渲染 Plate 组件
+      console.log(value, 'edit')
+    }
+  }, [html])
 
-export default function PlateEditor() {
+  const editor = useMemo(() => createPlateEditor(), [])
+
   return (
-    <div>
-      <MemoProvider>
-        <SelectedTagsProvider>
-          <ImageProvider>
-            <div className='relative top-0'>
-              <TooltipProvider>
-                <Plate plugins={plugins}>
-                  <Editor placeholder='Typing something here...' />
-                  {/* <MentionCombobox items={MENTIONABLES} /> */}
-                  {/* <div className='w-full mt-4'><TagSelect/></div> */}
-                </Plate>
-              </TooltipProvider>
-            </div>
-          </ImageProvider>
-        </SelectedTagsProvider>
-      </MemoProvider>
+    <div className='p-1'>
+      <SelectedTagsProvider>
+        <ImageProvider>
+          <div className='relative top-0'>
+            <TooltipProvider>
+              <Plate key={key} editor={editor} plugins={plugins} initialValue={initialValue}>
+                <Editor placeholder='Typing something here...' />
+              </Plate>
+            </TooltipProvider>
+          </div>
+        </ImageProvider>
+      </SelectedTagsProvider>
     </div>
   )
 }
+
+export default PlateEditor

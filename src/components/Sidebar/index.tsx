@@ -1,10 +1,9 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { routes } from '@/router'
+import { ROUTE_KEY, routes } from '@/router'
 import { Button } from '@/components/ui/button'
 import Avatar from '@/assets/img/avatar.jpg'
 import { cva } from 'class-variance-authority'
 import { ThemeToggle } from '../ThemeToggle'
-import RssSidebar from '../RssSidebar/index'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva('hover:bg-[#ececec] dark:hover:bg-[#272727]', {
@@ -48,7 +47,9 @@ const Sidebar: React.FC<RssSidebarProps> = ({ className }) => {
       {routes.map(item => {
         if (!item.hideInMenu) {
           const Icon = item.icon!
-          const isActive = location.pathname === `/${item.path}`
+          // 检查是否为 home 或 memo 路由
+          const isActive =
+            location.pathname === `/${item.path}` || (item.path === '' && location.pathname.includes(ROUTE_KEY.MEMO))
           return (
             <Link key={item.key} to={`/${item.path}`}>
               <div>

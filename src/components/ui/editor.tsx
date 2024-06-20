@@ -8,7 +8,7 @@ import { ImageList } from './image-list'
 import { FixedToolbar } from './fixed-toolbar'
 import { FixedToolbarButtons } from './fixed-toolbar-buttons'
 import { SelectedTagsList } from './selected-tags-list'
-import { useTagsContext } from '@/context/SelectedTagsContext'
+import type { TagsEntity } from '@/types/tags'
 
 const editorVariants = cva(
   cn(
@@ -66,8 +66,8 @@ const Editor = React.memo(
       const handleFocus = useCallback(() => {
         setIsFocused(true)
       }, [])
-
-      const { selectedTags, setSelectedTags } = useTagsContext()
+      const [selectedTags, setSelectedTags] = useState<TagsEntity[]>([])
+      // const { selectedTags, setSelectedTags } = useSelectedTagsContext()
 
       const handleBlur = useCallback(() => {
         setIsFocused(false)
@@ -111,7 +111,7 @@ const Editor = React.memo(
               null}
           </div>
           <FixedToolbar className='absolute bottom-0 left-0 right-0'>
-            <FixedToolbarButtons />
+            <FixedToolbarButtons selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
           </FixedToolbar>
         </div>
       )

@@ -7,7 +7,6 @@ interface HeatMapDataProps {
   className?: string
 }
 export const MemoHeatMap: React.FC<HeatMapDataProps> = ({ className }) => {
-  // 获取12周的日期范围
   const getLast12Weeks = useCallback(() => {
     const now = new Date()
     const weeks = []
@@ -68,8 +67,6 @@ export const MemoHeatMap: React.FC<HeatMapDataProps> = ({ className }) => {
     })
   }, [getLast12Weeks, generateMonthLabels])
   const getColor = useCallback((value: number) => {
-    console.log(value)
-
     // TODO 暗黑模式匹配
     if (isNaN(value) || value === 0) {
       return '#F7FAFF'

@@ -6,7 +6,7 @@ export interface TagsResponse {
 }
 
 export type TagsEntity = TagsResponse
-export type Tags = Omit<TagsEntity, 'createdBy'>
+// export type Tags = Omit<TagsEntity, 'createdBy'>
 
 interface CreateTagsDto {
   name: string
@@ -22,8 +22,10 @@ interface DeleteTagsDto {
 }
 interface Tag extends TagsEntity {
   children?: Tag[]
+  path: string
 }
 
 interface TagNode extends Omit<Tag, 'children'> {
   children?: { [key: string]: TagNode }
+  path: string
 }

@@ -10,7 +10,7 @@ export class MemoDataBase extends Dexie {
   private constructor() {
     super(INDEX_DATABASE_NAME)
     this.version(1).stores({
-      memos: '&id, content, tags, images, createdTime, updatedTime'
+      memos: '&id, content, *tags, images, createdTime, updatedTime'
     })
     this.memos = this.table('memos')
   }
@@ -70,17 +70,17 @@ export class MemoDataBase extends Dexie {
   }
 
   // 查找所有包含指定 tag 的 memos
-  async findMemosByTag(tag: string): Promise<MemoEntity[]> {
+  async findMemosByTag(tag: string, page: number = 1, pageSize: number = 10): Promise<MemoEntity[]> {
     try {
-      const memos = await this.memos.where('tags').equals(tag).toArray()
-      console.log(`Memos with tag "${tag}" retrieved successfully!`)
+      const offset = (page - 1) * pageSize
+      const memos = await this.memos.where('tags').anyOf([tag]).offset(offset).limit(pageSize).toArray()
+      console.log(`Found ${memos.length} memos with tag "${tag}" for page ${page}!`)
       return memos
     } catch (error) {
-      console.error(`Failed to retrieve memos with tag "${tag}":`, error)
+      console.error(`Failed to retrieve memos with tag "${tag}" for page ${page}:`, error)
       return []
     }
   }
-
   async deleteAllMemos() {
     try {
       await this.memos.clear()

@@ -1,11 +1,12 @@
-import type { Tag, TagNode } from '@/types/tags'
+import type { Tag, TagNode, TagsEntity } from '@/types/tags'
 
-export const transformTags = (tags: Tag[]): Tag[] => {
+export const transformTags = (tags: TagsEntity[]): Tag[] => {
   const tagMap: { [key: string]: TagNode } = {}
 
   tags.forEach(tag => {
     const parts = tag.name.split('/')
     let currentLevel = tagMap
+    let path = ''
 
     parts.forEach((part, index) => {
       if (!currentLevel[part]) {
@@ -14,9 +15,18 @@ export const transformTags = (tags: Tag[]): Tag[] => {
           name: part,
           count: tag.count,
           createdBy: tag.createdBy,
-          children: {}
+          children: {},
+          path: '' // Initialize path
         }
       }
+
+      if (index === 0) {
+        path = part
+      } else {
+        path += '/' + part
+      }
+
+      currentLevel[part].path = path // Update path
 
       if (index === parts.length - 1) {
         currentLevel[part].id = tag.id
@@ -35,6 +45,7 @@ export const transformTags = (tags: Tag[]): Tag[] => {
         name: tagNode.name,
         count: tagNode.count,
         createdBy: tagNode.createdBy,
+        path: tagNode.path, // Include path in the final Tag object
         children: tagNode.children ? buildTree(tagNode.children) : undefined
       }
       return tag

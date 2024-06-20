@@ -5,6 +5,6 @@ export const createMemosReq = (data: MemoDto): Promise<MemoEntity> => {
   return request.post('/memos/new', { ...data })
 }
 
-export const getAllMemosReq = (data: PaginationDto): Promise<MemoEntity[]> => {
-  return request.get('/memos/all', { params: { ...data } })
+export const getAllMemosReq = (): Promise<MemoEntity[]> => {
+  return request.get('/memos/all')
 }

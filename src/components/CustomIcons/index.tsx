@@ -75,7 +75,10 @@ import {
   Link,
   Unlink,
   Share2,
-  SquarePen
+  SquarePen,
+  LayoutGrid,
+  Sparkles,
+  ChevronRightIcon
 } from 'lucide-react'
 
 import type { LucideIcon } from 'lucide-react'
@@ -253,6 +256,8 @@ export const Icons = {
   unSubScribed: Unlink,
   share: Share2,
   edit: SquarePen,
+  all: LayoutGrid,
+  random: Sparkles,
   // www
   gitHub: (props: LucideProps) => (
     <svg viewBox='0 0 438.549 438.549' {...props}>
