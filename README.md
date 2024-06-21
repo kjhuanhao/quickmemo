@@ -60,12 +60,16 @@ Memo是这个产品的核心功能，你可以理解为一个个的卡片，每�
 
 ## 作者
 
-- 赖佳豪：[https://uastpsddr4c.feishu.cn/docx/IF7HdqQswo8t3qxxix3c7sPXnHe](https://uastpsddr4c.feishu.cn/docx/IF7HdqQswo8t3qxxix3c7sPXnHe)
+- 佳豪：
+  - 个人使用说明书： [https://uastpsddr4c.feishu.cn/docx/IF7HdqQswo8t3qxxix3c7sPXnHe](https://uastpsddr4c.feishu.cn/docx/IF7HdqQswo8t3qxxix3c7sPXnHe)
+  - 即刻：[佳豪 jiahao](https://m.okjike.com/users/d321ec82-1a13-4cac-a747-18843fd37bf0)
+  - Bilibili: [佳豪君 z](https://space.bilibili.com/67268239)
+  - 推特：[Mrlaijiahao](https://x.com/Mrlaijiahao)
   - 开发、产品 
   - 大二 会计学  
 
 
-- 林子豪
+- 子豪
   - 产品、UI 
   - 大二 英语专业 
 
