@@ -58,6 +58,13 @@ Memo是这个产品的核心功能，你可以理解为一个个的卡片，每�
 
 ![](./img/dark2.png) 
 
+## 移动端支持
+<table>
+  <tr>
+    <td><img src="./img/login.png" alt="Login Image" style="width: 50%;"/></td>
+    <td><img src="./img/phone-memo.png" alt="Phone Memo Image" style="width: 50%;"/></td>
+  </tr>
+</table>
 
 ## 后续开发工作
 > 非常抱歉，目前这个项目进度是 80%，因为开发只有一个人，同时干前后端，进度较慢，最近我要期末考试了，所以这个项目暂时搁置了，后续会继续开发，预计 7 月完成，这里先开源出来，有兴趣的可以关注
