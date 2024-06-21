@@ -82,7 +82,7 @@
 
   /* 自定义滚动条样式 */
   .scrollbar-transparent::-webkit-scrollbar {
-    width: 12px; /* 滚动条的宽度 */
+    width: 8px; /* 滚动条的宽度 */
   }
 
   .scrollbar-transparent::-webkit-scrollbar-track {

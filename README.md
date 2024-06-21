@@ -1,58 +1,54 @@
-# 前端全栈开发框架
+<p align="center">
+<img src="https://s21.ax1x.com/2024/06/21/pkDdutO.png" alt="QuickMemo" width="100">
+</p>
+<h1 align="center">QuickMemo</h1>
 
-## 相关框架/组件
-- [react18](https://reactjs.org/): 核心框架
-- [typescript](https://www.typescriptlang.org/): 类型声明
-- [vite5](https://cn.vitejs.dev/): 构建工具
-- [tailwindcss](https://tailwindcss.com/): 原子化 css
-- [shadcn](https://ui.shadcn.com/): 基于 tailwindcss 的无组件 UI 库
-- [icon-pack](https://iconpark.oceanengine.com/official)：图表库
-- [react-router-dom](https://reactrouter.com/en/main): 路由
-- [axios](https://axios-http.com/docs/intro): 网络请求
-- [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction): 轻量级的状态管理
+## Banner
 
-# 特色
-1. 使用[stylelint](https://stylelint.io/), [eslint](https://eslint.org/), [prettier](https://prettier.io/)进行代码规范化和格式化，
-2. 使用 [commitlint](https://commitlint.js.org/)和[cz-git](https://cz-git.qbb.sh/zh/)规范和优化 commit 操作
-3. 使用 [husky](https://typicode.github.io/husky/)的hooks对 commit 进行校验，并在之前执行代码的检查和格式化操作
-4. 支持前端国际化，使用 `react-i18next` 作为前端国际化方案
-5. 支持主题明暗的切换，已在 `main.tsx` 中引入，你只需要专注编写你的样式类，在需要切换的时候，使用`import { useTheme } from '@/components/ThemeProvider'` 或者在`localStorage`设置`theme`值即可，具体可查看`src/components/ThemeProvider/`组件的源代码
+![](./img/banner.png)
 
-## 如何运行
-使用 pnpm 包进行管理
-```bash
-npm install pnpm -g
-pnpm install
-```
+## Background
+在这个信息充斥的时代，我们每个人都被无数的碎片化信息所包围。这些信息的来源五花八门，从抖音、B站、头条新闻等互联网平台，到我们生活中的亲朋好友、同事、老师，每一个角落都充满了信息的流动。它们以新闻、文章、视频等多种形式呈现，丰富而多样。
 
-## 如何使用
-### 快速commit操作
-![commit.gif](./img/commit.gif)
-```bash
-pnpm run commit
-```
-> 如果你想修改 commit 规范，需要修改`commitlint.config.js`
+信息的来源不仅限于外界，还源自我们内心的思考与创造。无论是在街头漫步时的灵光一闪，还是沐浴时的突发奇想，这些瞬间的灵感都可能激发我们创作小说、撰写论文或开发产品。这些碎片化的信息，虽然看似杂乱无章，却蕴含着无限的价值。
+
+设想一下，如果我们能够拥有一个超凡的记忆力，将所有这些有价值的信息一一保存，随时调用，那将是多么令人向往的能力。正是基于这样的愿景，我构思了一款卡片笔记应用。这款应用不仅能够帮助我们记录和收集日常生活中那些值得铭记的碎片信息，还能从互联网的海量信息中筛选、整理，成为我们的"第二大脑"。
+
+这款产品它将每一个信息抽象为向量，借助AI，构建起我们的知识库，与 AI 进行对话从知识库中检索自己的知识。不仅如此，还能发现我们随手记录下的信息与其他信息之间的联系，在不知不觉间帮助我们构建起一个庞大的知识网络
+
+## 功能演示
+### Memo卡片
+Memo是这个产品的核心功能，你可以理解为一个个的卡片，每个卡片的来源可能是你的突然想到的 Idea，也可能是你从网络中收集到的有价值的信息。
+
+- 每个 memo 支持打上标签
+- 支持为 memo 添加图片
+- 支持为 memo 添加链接
+
+![](./img/memo.png)
+
+### 信息源订阅
+信息源订阅是这个产品的另一个核心功能，你可以订阅比如知乎、B站、抖音等，你可以订阅你感兴趣的信息源，并实时获取最新的信息。
+
+- 支持订阅微信公众号
+- 支持订阅各种常见的互联网信息平台，例如知乎、B站
+
+![](./img/rss.png)
+
+### 信息源阅读
+订阅了信息源后，可以在分组处查看信息
+
+![](./img/rssInfo.png)
+
+### 相关笔记 && AI 知识库
+正在开发中...
+
+## 作者
+- 赖佳豪：https://uastpsddr4c.feishu.cn/docx/IF7HdqQswo8t3qxxix3c7sPXnHe
+  - 开发、产品 
+  - 大二 会计学  
 
 
-## 后端
-采用 [nestjs](https://docs.nestjs.com/)作为后端框架，正在开发中，支持的特色如下
-
-- 用户鉴权
-- TypeOrm集成的数据库操作
-- 统一的响应封装
-- 日志系统
-- ...
-
-
-## 未来计划
-支持 [Tauri2.0](https://v2.tauri.app/blog/tauri-2-0-0-beta/) 进行跨端开发，一套代码可以支持 mac、windows、linux、macos、ios、android 平台
-
-```js
-function getName(name, age){
-  const a = '12131'
-  return 'Tauri'
-}
-
-<html>21213121</html>
-```
+- 林子豪
+  - 产品、UI 
+  - 大二 英语专业 
 

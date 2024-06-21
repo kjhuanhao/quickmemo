@@ -69,7 +69,7 @@ export const MemoCard: React.FC<MemoCardProps> = ({ memo, className }) => {
       ) : status === 'edit' ? (
         <PlateEditor html={memo.content} />
       ) : (
-        <div>123</div>
+        <div></div>
       )}
     </>
   )

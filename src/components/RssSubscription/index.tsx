@@ -7,7 +7,7 @@ import { Icons } from '../CustomIcons'
 import { SubscriptionDialog } from './subscriptionDialog'
 
 const rssItemVariants = cva(
-  'flex flex-col pad:flex-col items-start rounded-xl shadow-md p-3 w-full h-40 pad:w-80 gap-2 bg-card',
+  'flex flex-col pad:flex-col items-start rounded-xl shadow-md p-3 w-full h-44 pad:w-80 gap-2 bg-card',
   {
     variants: {
       selected: {
@@ -83,7 +83,7 @@ export const RssSubscription = React.memo(() => {
               <h2 className='text-lg font-bold '>{rss.name}</h2>
             </div>
             <div className='text-base indent-8 line-clamp-3 text-card-text mr-2'>{rss.description}</div>
-            <div className='absolute right-5 bottom-3 cursor-pointer text-card-text '>
+            <div className='absolute right-3 bottom-1 cursor-pointer text-card-text '>
               {rss.selected ? (
                 <SubscriptionDialog rssId={rss.id} type='delete' onSubscriptionChange={handleSubscriptionChange}>
                   <Icons.subscribed

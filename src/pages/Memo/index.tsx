@@ -10,7 +10,7 @@ import InfiniteScroll from 'react-infinite-scroller'
 function Memo() {
   const { memos, fetchMemos, fetchMemosByTag, clearMemos } = useMemosContext()
   const [isLoading, setIsLoading] = useState(false)
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
@@ -27,17 +27,17 @@ function Memo() {
 
   useEffect(() => {
     resetAndFetchMemos()
-  }, [tag, resetAndFetchMemos])
+  }, [location.pathname, tag, resetAndFetchMemos])
 
   const loadMoreMemos = useCallback(
     async (pageToLoad: number) => {
-      if (isLoading) return
+      if (isLoading || !hasMore) return
 
       setIsLoading(true)
-      console.log('触发')
 
       try {
         const newMemos = tag ? await fetchMemosByTag(tag, pageToLoad) : await fetchMemos(pageToLoad)
+
         if (newMemos.length === 0) {
           setHasMore(false)
         } else {
@@ -47,18 +47,17 @@ function Memo() {
         setIsLoading(false)
       }
     },
-    [isLoading, fetchMemos, fetchMemosByTag, tag]
+    [isLoading, hasMore, fetchMemos, fetchMemosByTag, tag]
   )
 
   return (
-    <div className='flex flex-col h-screen'>
+    <div className='flex flex-col h-screen scrollbar-transparent'>
       <div className='flex flex-row gap-5 mb-5 items-center'>
         <h2 className='text-3xl font-bold'>Memo</h2>
         <SyncButton />
       </div>
       <Editor />
-      <div className='overflow-auto flex-1' ref={containerRef}>
-        {/* 确保有高度和滚动样式 */}
+      <div className='overflow-auto flex-1 h-96' ref={containerRef}>
         <InfiniteScroll
           pageStart={0}
           loadMore={() => loadMoreMemos(page)}
@@ -66,9 +65,9 @@ function Memo() {
           loader={<Loading />}
           useWindow={false}
         >
-          {memos.map(memo => {
-            return <MemoCard key={memo.id} memo={memo} className='mt-5' />
-          })}
+          {memos.map(memo => (
+            <MemoCard key={memo.id} memo={memo} className='mt-5' />
+          ))}
         </InfiniteScroll>
         <div className='text-center py-3 text-stone-600'>{memos.length}条MEMO加载完成</div>
       </div>

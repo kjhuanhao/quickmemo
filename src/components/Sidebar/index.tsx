@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { ROUTE_KEY, routes } from '@/router'
 import { Button } from '@/components/ui/button'
-import Avatar from '@/assets/img/avatar.jpg'
+import Logo from '@/assets/img/logo.png'
 import { cva } from 'class-variance-authority'
 import { ThemeToggle } from '../ThemeToggle'
 import { cn } from '@/lib/utils'
@@ -41,7 +41,7 @@ const Sidebar: React.FC<RssSidebarProps> = ({ className }) => {
       {/* 头像区域 */}
       <div className='flex mt-10'>
         <Button variant='ghost' size='icon'>
-          <img src={Avatar} alt='avatar' className='rounded-md w-10 h-10' />
+          <img src={Logo} alt='avatar' className='rounded-md w-8 h-8' />
         </Button>
       </div>
       {routes.map(item => {
